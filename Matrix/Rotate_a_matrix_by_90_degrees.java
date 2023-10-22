@@ -14,31 +14,34 @@ class Rotate_a_matrix_by_90_degrees{
     }
 
     public static void rotate(int arr[][], int N){
+        // Time complexity O(n*n) + O(1)
+
+        // Find the transpose
+        for(int r=0; r<N-1; r++){
+            for(int c=r+1; c<N; c++){
+                int temp = arr[r][c];
+                arr[r][c] = arr[c][r];
+                arr[c][r] = temp;
+            }
+        }
 
         // Reverse all the rows
         for(int r=0; r<N; r++){
             reverse_row(arr[r], N);
-        }
-
-        // Do the swappings
-        int r = 0;
-        int c = N-1;
-
-        for(r=0; r<N-1; r++){
-          for(c=1; c<N; c++){
-            System.out.println(r + "," + c + " <-> " + c + "," + r);
-          }  
-        }
-        
+        }       
         
     }
 
     public static void main(String args[]){
         // int arr[][] = {{1,2},
         //                {3,4}};
-        int arr[][] = {{1,2,3},
-                       {4,5,6},
-                       {7,8,9}};
+        // int arr[][] = {{1,2,3},
+        //                {4,5,6},
+        //                {7,8,9}};
+        int arr[][] = {{1,2,3,4},
+                       {5,6,7,8},
+                       {9,10,11,12},
+                       {13,14,15,16}};
         rotate(arr, arr.length);
 
         for(int i=0; i<arr.length; i++){
