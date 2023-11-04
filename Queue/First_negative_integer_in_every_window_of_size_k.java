@@ -1,3 +1,6 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 class First_negative_integer_in_every_window_of_size_k{
     public long[] printFirstNegativeInteger(long A[], int N, int K)
     {
@@ -69,6 +72,8 @@ class First_negative_integer_in_every_window_of_size_k{
                 ind++;
             }
         }
+
+        return ans;
     }
 
     public static void main(String[] args) {
