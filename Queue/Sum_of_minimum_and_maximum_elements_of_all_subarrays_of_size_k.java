@@ -4,6 +4,8 @@ import java.util.Queue;
 class Sum_of_minimum_and_maximum_elements_of_all_subarrays_of_size_k{
  
     public static int solve(int arr[], int n, int k){
+        // Using Queue
+        // Time complexity O(n) || Space complexity O(k)
         Queue<Integer> min_q = new LinkedList<>();
         Queue<Integer> max_q = new LinkedList<>();
         int sum = 0;
@@ -27,21 +29,17 @@ class Sum_of_minimum_and_maximum_elements_of_all_subarrays_of_size_k{
             }
         }
 
-        for(int i=1; i<n; i++){
-            System.out.println("min q " + min_q);
-            System.out.println("max q " + max_q);
-            System.out.println("---------------------");
-            
-            while(!min_q.isEmpty() && ((min_q.peek() < i-k+1) || (arr[min_q.peek()] > arr[i]))){
+        for(int i=k-1; i<n; i++){            
+            while(!min_q.isEmpty() && ((min_q.peek() < i-k+1) || (arr[min_q.peek()] >= arr[i]))){
                 min_q.poll();
             }
             min_q.add(i);
             
-            while(!max_q.isEmpty() && ((max_q.peek() < i-k+1) || (arr[max_q.peek()] < arr[i]))){
+            while(!max_q.isEmpty() && ((max_q.peek() < i-k+1) || (arr[max_q.peek()] <= arr[i]))){
                 max_q.poll();
             }
             max_q.add(i);
-            sum += (min_q.peek() + max_q.peek());
+            sum += (arr[min_q.peek()] + arr[max_q.peek()]);
         }
 
         return sum;
