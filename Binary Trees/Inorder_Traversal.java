@@ -19,32 +19,25 @@ public class Inorder_Traversal {
 
         // return inorderArr;
 
+        
+        // Using Iteration
+        // Time complexity O(n) || Space complexity O(n)
         List<Integer> inorderArr = new ArrayList<Integer>();
         Stack<TreeNode> st = new Stack<>();
 
         TreeNode temp = root;
-        st.push(temp);
 
-        while(temp != null){
-            if(temp.left == null){
-                temp = st.pop();
-                inorderArr.add(temp.val);
-
-                if(temp.right != null){
-                    temp = temp.right;
-                    st.push(temp);
-                }
-                else if(!st.isEmpty()){
-                    temp = st.pop();
-                }
-                else{
-                    break;
-                }
-            }
-            else{
-                temp = temp.left;
+        while(temp != null || st.size() > 0){            
+            
+            while(temp != null){
                 st.push(temp);
+                temp = temp.left;
             }
+
+            temp = st.pop();
+            inorderArr.add(temp.val);
+
+            temp = temp.right;
         }
 
         return inorderArr;
