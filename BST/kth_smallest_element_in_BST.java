@@ -27,7 +27,7 @@ class kth_smallest_element_in_BST{
     Node findPredecessor(Node root){
         Node pred = root.left;
         
-        while(pred != null && pred != root && pred.right != null){
+        while(pred != null && pred.right != root && pred.right != null){
             pred = pred.right;
         }
         
@@ -42,7 +42,8 @@ class kth_smallest_element_in_BST{
         
         // return solve(root);
         
-        
+        // Using morris inorder traversal
+        // Time complexity O(n) || Space complexity O(1)
         Node curr = root;
         
         while(curr != null){
@@ -51,6 +52,7 @@ class kth_smallest_element_in_BST{
                 if(K == 0){
                     return curr.data;
                 }
+                curr = curr.right;
             }
             else{
                 Node pred = findPredecessor(curr);
