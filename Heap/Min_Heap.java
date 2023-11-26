@@ -30,19 +30,19 @@ class MinHeap{
         int index = size;
         arr[index] = data;
 
-        // while(index > 1){
-        //     int parent = index/2;
+        while(index > 1){
+            int parent = index/2;
             
-        //     if(arr[parent] > arr[index]){
-        //         int temp = arr[index];
-        //         arr[index] = arr[parent];
-        //         arr[parent] = temp;
-        //         index = parent;
-        //     }
-        //     else{
-        //         return;
-        //     }
-        // }
+            if(arr[parent] > arr[index]){
+                int temp = arr[index];
+                arr[index] = arr[parent];
+                arr[parent] = temp;
+                index = parent;
+            }
+            else{
+                return;
+            }
+        }
 
         heapify(arr, size, index);
     }
